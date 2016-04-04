@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <title>test json</title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+    <div>
+        用户名：<input type="text" name="username" id="username" />
+        <br />
+        会员组：<input type="text" name="groupname" id="groupname" />
+        <br />
+        UID:<input type="text" name="uid" id="uid" />
+    </div>
+    <script type="text/javascript">
+        $('document').ready(function(){
+            var url = "serve.php?inAjax=1&do=checkMember&username=sjm";
+            var data = {};
+            $.get(url,data,function(res){
+                var jsonObj = eval("("+res+")");
+                console.log(jsonObj);
+                $("#username").val(jsonObj.username);
+                $("#groupname").val(jsonObj.groupname);
+                $("#uid").val(jsonObj.uid);
+            })
+        })
+    </script>
+</body>
+</html>
